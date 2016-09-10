@@ -24,6 +24,9 @@ defmodule Chat.Router do
     delete "/rooms/:id", RoomController, :delete
     get "/registrations/new", RegistrationController, :new
     post "/registrations", RegistrationController, :create
+    get "/login", SessionController, :new
+    post "/login", SessionController, :create
+    delete "/logout", SessionController, :delete
   end
 
   # Other scopes may use custom stacks.
