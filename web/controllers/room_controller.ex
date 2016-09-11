@@ -2,11 +2,12 @@ defmodule Chat.RoomController do
   use Chat.Web, :controller
   alias Chat.Repo
   alias Chat.Room
+  import Chat.Session, only: [current_user: 1]
 
   plug Chat.Plugs.Authenticate
 
   def index(conn, _params) do
-    rooms = Repo.all(Room)
+    rooms = Repo.all(Room) |> Repo.preload(:user)
     render(conn, "index.html", %{rooms: rooms})
   end
 
@@ -16,6 +17,8 @@ defmodule Chat.RoomController do
   end
 
   def create(conn, %{"room" => room_params}) do
+    room_params = room_params
+    |>Map.put("user_id", current_user(conn).id)
     changeset = Room.changeset(%Room{}, room_params)
 
     case Repo.insert(changeset) do

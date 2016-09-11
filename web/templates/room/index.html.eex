@@ -16,7 +16,9 @@
 
     <td class="text-right">
       <%= link "Show", to: room_path(@conn, :show, room), class: "btn btn-default btn-xs" %>
-      <%= link "Delete", to: room_path(@conn, :delete, room), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%=if current_user(@conn) == room.user do %>
+        <%= link "Delete", to: room_path(@conn, :delete, room), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+      <% end %>
     </td>
   </tr>
   <% end %>
