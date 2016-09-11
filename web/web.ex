@@ -52,6 +52,7 @@ defmodule Chat.Web do
       import Chat.Router.Helpers
       import Chat.ErrorHelpers
       import Chat.Gettext
+      import Chat.Session, only: [current_user: 1, logged_in?: 1]
     end
   end
 

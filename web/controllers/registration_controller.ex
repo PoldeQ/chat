@@ -11,12 +11,13 @@ defmodule Chat.RegistrationController do
       changeset = User.changeset(%User{}, user_params)
 
         case Chat.Registration.create(changeset) do
-          {:ok, _user} ->
-          conn
-          |> put_flash(:info, "Zrobiłeś konto!!!")
-          |> redirect(to: "/rooms")
+          {:ok, user} ->
+            conn
+            |> put_flash(:info, "Zrobiłeś konto!!!")
+            |> put_session(:current_user, user.id)
+            |> redirect(to: "/rooms")
           {:error, changeset} ->
-          render(conn, "new.html", changeset: changeset)
+            render(conn, "new.html", changeset: changeset)
         end
     end
 end
