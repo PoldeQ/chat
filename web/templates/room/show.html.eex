@@ -3,7 +3,11 @@
 
 <div class='row form-group'>
   <div class='col-md-12'>
-    <div id="chat-box" class="container"></div>
+    <div id="chat-box" class="container">
+    <%= for message <- @messages do %>
+      <br/>[<%= message.user.email %>]: <%= message.body %>
+      <% end %>
+    </div>
     <input id="chat-input" class="form-control" placeholder="Message"/>
   </div>
 </div>

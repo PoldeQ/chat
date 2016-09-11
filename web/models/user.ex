@@ -1,10 +1,11 @@
 defmodule Chat.User do
   use Chat.Web, :model
 
-  schema "user" do
+  schema "users" do
     field :email, :string
     field :crypted_password, :string
     field :password, :string, virtual: true
+    has_many :messages, Chat.Message
 
     timestamps()
   end

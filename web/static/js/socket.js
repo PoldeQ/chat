@@ -16,7 +16,7 @@ channel.join()
 let chatInput = $('#chat-input')
 chatInput.on('keypress', event => {
   if(event.keyCode == 13) {
-    channel.push("new_msg", {body: chatInput.val()});
+    channel.push("new_msg", {body: chatInput.val(), user: user, room_id: roomId});
     chatInput.val("")
   }
 })

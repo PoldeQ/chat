@@ -2,7 +2,7 @@ defmodule Chat.RoomController do
   use Chat.Web, :controller
   alias Chat.Repo
   alias Chat.Room
-  
+
   plug Chat.Plugs.Authenticate
 
   def index(conn, _params) do
@@ -30,8 +30,10 @@ defmodule Chat.RoomController do
 
   def show(conn, params) do
     %{"id" => id} = params
+    query = from m in Chat.Message, where: m.room_id == ^id
     room = Repo.get!(Room, id)
-    render(conn, "show.html", %{room: room})
+    messages = Repo.all(query) |> Repo.preload(:user)
+    render(conn, "show.html", %{room: room, messages: messages})
   end
 
   def delete(conn, params) do
