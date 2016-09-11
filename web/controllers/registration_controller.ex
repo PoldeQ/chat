@@ -15,7 +15,7 @@ defmodule Chat.RegistrationController do
             conn
             |> put_flash(:info, "Zrobiłeś konto!!!")
             |> put_session(:current_user, user.id)
-            |> redirect(to: "/rooms")
+            |> redirect(to: "/")
           {:error, changeset} ->
             render(conn, "new.html", changeset: changeset)
         end

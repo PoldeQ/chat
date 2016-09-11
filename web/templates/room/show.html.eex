@@ -8,6 +8,7 @@
       <br/>[<%= message.user.email %>]: <%= message.body %>
       <% end %>
     </div>
+    <%= link "Back", to: room_path(@conn, :index)%>
     <input id="chat-input" class="form-control" placeholder="Message"/>
   </div>
 </div>

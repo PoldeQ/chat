@@ -11,7 +11,7 @@ defmodule Chat.SessionController do
         conn
         |> put_session(:current_user, user.id)
         |> put_flash(:info, "Zalogowałeś się!")
-        |> redirect(to: "/rooms")
+        |> redirect(to: "/")
       :error ->
         conn
         |> put_flash(:info, "Niepoprawny login lub hasło")
@@ -23,6 +23,6 @@ defmodule Chat.SessionController do
     conn
     |> delete_session(:current_user)
     |> put_flash(:info, "Zostałeś wylogowany!")
-    |> redirect(to: "/rooms")
+    |> redirect(to: "/")
   end
 end
