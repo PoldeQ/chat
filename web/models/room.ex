@@ -14,6 +14,6 @@ defmodule Chat.Room do
     struct
     |> cast(params, [:name])
     |> validate_required([:name])
-    |> validate_length(:name, min: 3, max: 10)
+    |> validate_length(:name, min: 3)
   end
 end

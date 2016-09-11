@@ -2,6 +2,8 @@ defmodule Chat.RoomController do
   use Chat.Web, :controller
   alias Chat.Repo
   alias Chat.Room
+  
+  plug Chat.Plugs.Authenticate
 
   def index(conn, _params) do
     rooms = Repo.all(Room)
