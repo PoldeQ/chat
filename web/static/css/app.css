@@ -1,1 +1,10 @@
 /* This file is for your main application css. */
+#chat-box {
+  border: 1px solid #adff2f;
+  height: 400px;
+  overflow: scroll;
+  margin-bottom: 50px;
+}
+#room-id {
+  display: none;
+}
